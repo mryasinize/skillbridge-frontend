@@ -3,12 +3,13 @@
 import { useFormStatus } from 'react-dom';
 
 interface SubmitButtonProps {
-    text: string;
+    text?: string;
     loadingText?: string;
     className?: string;
+    children?: React.ReactNode;
 }
 
-export function SubmitButton({ text, loadingText = 'Loading...', className }: SubmitButtonProps) {
+export function SubmitButton({ text, loadingText = 'Loading...', className, children }: SubmitButtonProps) {
     const { pending } = useFormStatus();
     return (
         <button
@@ -24,7 +25,7 @@ export function SubmitButton({ text, loadingText = 'Loading...', className }: Su
                     </svg>
                     {loadingText}
                 </div>
-            ) : text}
+            ) : (children || text)}
         </button>
     );
 }
