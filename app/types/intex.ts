@@ -1,8 +1,6 @@
-export type ApiResponse<T> = {
-    success: boolean;
-    data: T;
-    message?: string;
-}
+export type ApiResponse<T> =
+    | { success: true; data: T; message?: string }
+    | { success: false; data?: T; message?: string; error?: string };
 
 export type Category = {
     id: string;
@@ -44,4 +42,16 @@ export type AvailabilitySlot = {
     startTime: string;
     endTime: string;
     isBooked: boolean;
+};
+
+export type Booking = {
+    id: string;
+    studentId: string;
+    tutorProfileId: string;
+    categoryId: string;
+    startTime: string;
+    endTime: string;
+    status: 'CONFIRMED' | 'COMPLETED' | 'CANCELLED';
+    student?: User;
+    tutor?: TutorProfile;
 };
