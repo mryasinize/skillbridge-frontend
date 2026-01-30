@@ -80,3 +80,38 @@ export async function loginAction(prevState: any, formData: FormData) {
     }
     redirect('/dashboard');
 }
+
+export async function logoutAction() {
+    const cookieStore = await cookies();
+    cookieStore.delete('token');
+    redirect('/login');
+}
+
+export async function getUserAction() {
+    try {
+        const cookieStore = await cookies();
+        const token = cookieStore.get('token')?.value;
+
+        if (!token) {
+            return null
+        }
+
+        const res = await fetch(`${API_URL}/user/profile`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            cache: 'no-store'
+        });
+
+        const data: ApiResponse<{ user: User }> = await res.json();
+
+        if (!res.ok || !data.success) {
+            return null
+        }
+
+        return data.data.user;
+    } catch (error) {
+        console.error('getMeAction error:', error);
+        return null
+    }
+}
