@@ -115,3 +115,31 @@ export async function getUserAction() {
         return null
     }
 }
+
+export async function changePasswordAction(prevState: any, formData: FormData) {
+    const oldPassword = formData.get('oldPassword');
+    const newPassword = formData.get('newPassword');
+
+    try {
+        const cookieStore = await cookies();
+        const token = cookieStore.get('token')?.value;
+
+        if (!token) return { success: false, error: 'Unauthorized' };
+
+        const res = await fetch(`${API_URL}/auth/change-password`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ oldPassword, newPassword })
+        });
+
+        const data = await res.json();
+        if (!res.ok) return { success: false, error: data.message || 'Failed to change password' };
+
+        return { success: true, message: 'Password changed successfully' };
+    } catch (error) {
+        return { success: false, error: 'Connection error' };
+    }
+}

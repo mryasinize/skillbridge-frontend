@@ -11,7 +11,11 @@ export default function NavItemLink({
     href: string,
     children: React.ReactNode
 }) {
-    const pathname = usePathname();
+    let pathname = usePathname();
+    const isChangePasswordRoute = pathname.endsWith("change-password");
+    if (isChangePasswordRoute) {
+        pathname = pathname.replace("/change-password", "");
+    }
     const navItemClasses = `
     flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group
     ${pathname === href

@@ -54,3 +54,60 @@ export async function getUserStatsAction(): Promise<ApiResponse<{ stats: UserSta
         return { success: false, error: 'Connection error' };
     }
 }
+
+export async function updateProfileAction(prevState: any, formData: FormData) {
+    const name = formData.get('name');
+    const email = formData.get('email');
+
+    try {
+        const cookieStore = await cookies();
+        const token = cookieStore.get('token')?.value;
+
+        if (!token) return { success: false, error: 'Unauthorized' };
+
+        const res = await fetch(`${API_URL}/user/profile`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ name, email })
+        });
+
+        const data = await res.json();
+        if (!res.ok) return { success: false, error: data.message || 'Failed to update profile' };
+
+        return { success: true, message: 'Profile updated successfully' };
+    } catch (error) {
+        return { success: false, error: 'Connection error' };
+    }
+}
+
+export async function updateTutorProfileAction(prevState: any, formData: FormData) {
+    const bio = formData.get('bio');
+    const hourlyRate = Number(formData.get('hourlyRate'));
+    const categoryId = formData.get('categoryId');
+
+    try {
+        const cookieStore = await cookies();
+        const token = cookieStore.get('token')?.value;
+
+        if (!token) return { success: false, error: 'Unauthorized' };
+
+        const res = await fetch(`${API_URL}/tutor/profile`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ bio, hourlyRate, categoryId })
+        });
+
+        const data = await res.json();
+        if (!res.ok) return { success: false, error: data.message || 'Failed to update tutor profile' };
+
+        return { success: true, message: 'Tutor profile updated successfully' };
+    } catch (error) {
+        return { success: false, error: 'Connection error' };
+    }
+}

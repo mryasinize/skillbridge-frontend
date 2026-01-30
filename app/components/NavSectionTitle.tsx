@@ -6,14 +6,18 @@ import { Menu } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 export default function NavSectionTitle({ role }: { role: string }) {
-    const pathname = usePathname();
+    let pathname = usePathname();
+    const isChangePasswordRoute = pathname.endsWith("change-password");
+    if (isChangePasswordRoute) {
+        pathname = pathname.replace("/change-password", "");
+    }
     const { setSidebarOpen } = useDashboard();
     const currentNav = navigation[role as keyof typeof navigation] || sharedNavigation;
     const activeItem = currentNav.find(item => item.href === pathname);
 
     if (!activeItem) {
         return (
-            <div className="flex-1 max-w-xl mx-4 hidden sm:block italic font-black text-gray-400">
+            <div className="flex-1 max-w-xl mx-4 hidden sm:block font-black text-gray-400">
                 SkillBridge Dashboard
             </div>
         );
