@@ -1,9 +1,9 @@
 import { getUserAction } from '@/app/actions/auth';
-import { getTutorById, deleteAvailabilityAction } from '@/app/actions/tutor';
-import { redirect } from 'next/navigation';
+import { getTutorById } from '@/app/actions/tutor';
 import AvailabilityForm from '@/app/components/AvailabilityForm';
-import { Calendar, Clock, Trash2, AlertCircle } from 'lucide-react';
-import { SubmitButton } from '@/app/components/SubmitButton';
+import DeleteAvailabilityButton from '@/app/components/DeleteAvailabilityButton';
+import { Calendar, Clock } from 'lucide-react';
+import { redirect } from 'next/navigation';
 
 export default async function AvailabilityPage() {
     const user = await getUserAction();
@@ -88,18 +88,7 @@ export default async function AvailabilityPage() {
                                         </div>
 
                                         {!slot.isBooked && (
-                                            <form action={async (formData) => {
-                                                'use server';
-                                                await deleteAvailabilityAction(formData);
-                                            }}>
-                                                <input type="hidden" name="slotId" value={slot.id} />
-                                                <SubmitButton
-                                                    loadingText=""
-                                                    className="w-10 h-10 flex items-center justify-center bg-white text-gray-400 hover:text-red-600 hover:bg-red-50 border border-gray-100 rounded-xl transition-all shadow-none"
-                                                >
-                                                    <Trash2 size={18} />
-                                                </SubmitButton>
-                                            </form>
+                                            <DeleteAvailabilityButton slotId={slot.id} />
                                         )}
                                     </div>
                                 ))}

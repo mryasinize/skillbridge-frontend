@@ -28,13 +28,6 @@ export default function AvailabilityForm() {
                     <p className="text-sm text-gray-500 italic">Open a new slot for students.</p>
                 </div>
             </div>
-
-            {state?.error && (
-                <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-xl">
-                    <p className="text-sm text-red-700 font-medium">{state.error}</p>
-                </div>
-            )}
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                     <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-500 ml-1">

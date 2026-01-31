@@ -87,7 +87,7 @@ export async function addAvailabilityAction(prevState: any, formData: FormData) 
     }
 }
 
-export async function deleteAvailabilityAction(formData: FormData) {
+export async function deleteAvailabilityAction(prevState: any, formData: FormData) {
     const slotId = formData.get('slotId') as string;
     if (!slotId) return { success: false, error: 'Slot ID is required' };
 
