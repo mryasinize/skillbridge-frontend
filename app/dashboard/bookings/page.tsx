@@ -1,8 +1,23 @@
-export default function BookingsPage() {
-    // We will show different bookings based on the role of the user
+import { getUserAction } from "@/app/actions/auth";
+import { getBookingsAction } from "@/app/actions/booking";
+import { redirect } from "next/navigation";
+import BookingClient from "@/app/components/BookingClient";
+
+export default async function BookingsPage() {
+    const user = await getUserAction();
+    if (!user) {
+        redirect('/login');
+    }
+
+    const bookingsRes = await getBookingsAction();
+    const bookings = bookingsRes.success ? bookingsRes.data || [] : [];
+
     return (
-        <div>
-            <h1>User Bookings (All Roles)</h1>
-        </div>
+        <main className="max-w-[1400px] mx-auto px-6 py-10">
+            <BookingClient
+                initialBookings={bookings}
+                currentUser={user}
+            />
+        </main>
     );
 }

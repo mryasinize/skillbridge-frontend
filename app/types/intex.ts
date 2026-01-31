@@ -52,6 +52,7 @@ export type Booking = {
     startTime: string;
     endTime: string;
     status: 'CONFIRMED' | 'COMPLETED' | 'CANCELLED';
+    category?: Category;
     student?: User;
     tutor?: TutorProfile;
 };
