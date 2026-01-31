@@ -34,12 +34,12 @@ export async function getAdminAnalytics(): Promise<ApiResponse<AdminStats>> {
 }
 
 export async function getAdminUsers(): Promise<ApiResponse<User[]>> {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token')?.value;
+
+    if (!token) return { success: false, error: 'Unauthorized' };
+
     try {
-        const cookieStore = await cookies();
-        const token = cookieStore.get('token')?.value;
-
-        if (!token) return { success: false, error: 'Unauthorized' };
-
         const res = await fetch(`${API_URL}/admin/users`, {
             headers: {
                 'Authorization': `Bearer ${token}`

@@ -88,14 +88,14 @@ export async function logoutAction() {
 }
 
 export async function getUserAction() {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token')?.value;
+
+    if (!token) {
+        return null
+    }
+
     try {
-        const cookieStore = await cookies();
-        const token = cookieStore.get('token')?.value;
-
-        if (!token) {
-            return null
-        }
-
         const res = await fetch(`${API_URL}/user/profile`, {
             headers: {
                 'Authorization': `Bearer ${token}`
