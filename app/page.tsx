@@ -23,7 +23,6 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
       <Navbar user={user} />
-      {/* Section 1: Hero */}
       <section className="relative pt-20 pb-24 md:pt-32 md:pb-40 overflow-hidden bg-white">
         <div className="absolute top-0 right-0 w-[50rem] h-[50rem] bg-blue-50/50 rounded-full -mr-64 -mt-64 blur-3xl"></div>
 
@@ -47,8 +46,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      {/* Section 2: Categories */}
       <section className="py-24 bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -73,8 +70,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      {/* Section 3: Featured Tutors */}
       <section className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
@@ -95,8 +90,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      {/* Section 4: Advantage */}
       <section className="py-32 bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-blue-600 rounded-[4rem] p-12 md:p-24 relative overflow-hidden shadow-2xl shadow-blue-200">

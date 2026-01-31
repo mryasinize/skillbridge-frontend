@@ -28,9 +28,9 @@ export default function HomeSearchInput() {
                     placeholder="Search for any subject (e.g. Photoshop, Calculus, Python)"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-transparent border-none focus:ring-0 px-4 py-4 text-gray-900 font-bold placeholder:text-gray-300 placeholder:font-medium"
+                    className="w-full outline-none bg-transparent border-none focus:ring-0 px-4 py-4 text-gray-900 font-bold placeholder:text-gray-300 placeholder:font-medium"
                 />
-                <button type="submit" className="bg-blue-600 text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition-all active:scale-95 shadow-xl shadow-blue-200">
+                <button type="submit" className="bg-blue-600 text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition-all active:scale-95 shadow-blue-200">
                     Search
                 </button>
             </div>

@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { User } from '../types/intex';
 import { GraduationCap } from 'lucide-react';
 
-export default async function Navbar({ user }: { user: User | null }) {
+export default async function Navbar({ user }: { user?: User | null }) {
     return (
-        <nav className="relative z-[100] bg-white border-b border-gray-100/50">
+        <nav className="sticky top-0 z-[100] bg-white border-b border-gray-100/50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-20">
                     <div className="flex items-center gap-12">
@@ -16,7 +16,7 @@ export default async function Navbar({ user }: { user: User | null }) {
                         </Link>
 
                         <div className="hidden md:flex items-center">
-                            <Link href="/tutors" className="text-gray-400 hover:text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] transition-colors">
+                            <Link href="/tutors" className="text-gray-400 hover:text-blue-600 text-xs font-black uppercase tracking-[0.2em] transition-colors">
                                 Browse Experts
                             </Link>
                         </div>
@@ -36,10 +36,10 @@ export default async function Navbar({ user }: { user: User | null }) {
                             </Link>
                         ) : (
                             <div className="flex items-center gap-4">
-                                <Link href="/login" className="text-gray-400 hover:text-gray-900 text-[10px] font-black uppercase tracking-[0.2em] px-4">
+                                <Link href="/login" className="text-gray-400 hover:text-gray-900 text-xs font-black uppercase tracking-[0.2em] px-4">
                                     Sign In
                                 </Link>
-                                <Link href="/register" className="bg-blue-600 text-white px-8 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-blue-700 transition-all active:scale-95">
+                                <Link href="/register" className="bg-blue-600 text-white px-8 py-3.5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-blue-700 transition-all active:scale-95">
                                     Join Platform
                                 </Link>
                             </div>
