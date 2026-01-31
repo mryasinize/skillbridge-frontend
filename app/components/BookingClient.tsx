@@ -216,12 +216,12 @@ export default function BookingClient({
                                                                         />
                                                                     ))}
                                                                 </div>
-                                                                <span className="text-[10px] font-black uppercase tracking-widest text-blue-600">
+                                                                <span className="text-xs font-black uppercase tracking-widest text-blue-600">
                                                                     {currentUser.role === 'STUDENT' ? 'Your Feedback' : 'Student Feedback'}
                                                                 </span>
                                                             </div>
                                                             <div className="flex items-center gap-4">
-                                                                <span className="text-[10px] font-bold text-gray-400">
+                                                                <span className="text-xs font-bold text-gray-400">
                                                                     {new Date(review.createdAt).toLocaleDateString()}
                                                                 </span>
                                                                 {currentUser.role === 'STUDENT' && (
@@ -236,7 +236,7 @@ export default function BookingClient({
                                                                 )}
                                                             </div>
                                                         </div>
-                                                        <p className="text-sm text-gray-700 italic font-medium leading-relaxed">
+                                                        <p className="text-gray-700 italic font-medium leading-relaxed">
                                                             "{review.comment}"
                                                         </p>
                                                     </div>

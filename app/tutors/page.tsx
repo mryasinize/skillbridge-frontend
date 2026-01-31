@@ -33,7 +33,7 @@ export default async function TutorsPage({ searchParams }: PageProps) {
 
                 <div className="flex-grow">
                     <div className="mb-8">
-                        <h1 className="text-3xl font-black text-gray-900 mb-1">Browse Tutors</h1>
+                        <h1 className="text-3xl font-black text-gray-900 mb-1">Our Specialized Tutors</h1>
                         <p className="text-gray-500">
                             {tutors.length} {tutors.length === 1 ? 'expert' : 'experts'} available
                         </p>

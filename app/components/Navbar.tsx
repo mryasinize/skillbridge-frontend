@@ -12,7 +12,7 @@ export default async function Navbar({ user }: { user?: User | null }) {
 
                         <div className="hidden md:flex items-center">
                             <Link href="/tutors" className="text-gray-400 hover:text-blue-600 text-xs font-black uppercase tracking-[0.2em] transition-colors">
-                                Browse Experts
+                                Browse Tutors
                             </Link>
                         </div>
                     </div>
