@@ -3,8 +3,7 @@
 import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { ApiResponse, Booking } from '../types/intex';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+import { API_URL } from '@/app/lib/config';
 
 export async function createBookingAction(formData: {
     tutorProfileId: string;

@@ -3,8 +3,7 @@
 import { ApiResponse, Category, TutorProfile } from "@/app/types/intex";
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+import { API_URL } from '@/app/lib/config';
 
 export async function getCategories(): Promise<Category[]> {
     try {

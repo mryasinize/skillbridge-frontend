@@ -3,8 +3,7 @@
 import { ApiResponse, User } from "@/app/types/intex";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+import { API_URL } from '@/app/lib/config';
 
 export async function registerAction(prevState: any, formData: FormData) {
     const name = formData.get('name');
