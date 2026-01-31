@@ -4,21 +4,20 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import Link from 'next/link';
-import { getCategories, getTutors } from './actions/tutor';
 import { getUserAction } from './actions/auth';
 import Footer from './components/Footer';
 import HomeSearchInput from './components/HomeSearchInput';
 import Navbar from './components/Navbar';
 import TutorCard from './components/TutorCard';
+import { getHomeStatsAction } from './actions/user';
 
 export default async function Home() {
-  const user = await getUserAction();
-  const categories = await getCategories();
-  const tutors = await getTutors();
-
-  const getTutorCount = (categoryId: string) => {
-    return tutors.filter(t => t.categoryId === categoryId).length;
-  };
+  const [user, stats] = await Promise.all([
+    getUserAction(),
+    getHomeStatsAction()
+  ]);
+  const { categories, featuredTutors, totalStudents, totalTutors } = stats;
+  console.log(categories)
 
   return (
     <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
@@ -63,7 +62,7 @@ export default async function Home() {
               >
                 <h3 className="text-lg font-black text-gray-900 mb-1 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{category.name}</h3>
                 <p className="text-gray-400 font-black text-[9px] uppercase tracking-widest">
-                  {getTutorCount(category.id)} Verified Experts
+                  {totalTutors} Verified Experts
                 </p>
               </Link>
             ))}
@@ -78,7 +77,7 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {tutors.slice(0, 3).map((tutor) => (
+            {featuredTutors.slice(0, 3).map((tutor) => (
               <TutorCard key={tutor.id} tutor={tutor} />
             ))}
           </div>
@@ -119,8 +118,8 @@ export default async function Home() {
 
               <div className="grid grid-cols-2 gap-4 w-full md:w-auto">
                 {[
-                  { val: "5k+", label: "ACTIVE STUDENTS" },
-                  { val: tutors.length, label: "EXPERT TUTORS" },
+                  { val: totalStudents, label: "ACTIVE STUDENTS" },
+                  { val: totalTutors, label: "EXPERT TUTORS" },
                   { val: "99%", label: "SATISFACTION" },
                   { val: "24/7", label: "SUPPORT" }
                 ].map((stat, i) => (

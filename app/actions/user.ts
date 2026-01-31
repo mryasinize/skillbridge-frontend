@@ -1,7 +1,7 @@
 'use server';
 
 import { cookies } from "next/headers";
-import { ApiResponse } from "../types/intex";
+import { ApiResponse, Category, TutorProfile } from "../types/intex";
 import { API_URL } from '@/app/lib/config';
 
 export interface UnifiedTutorStats {
@@ -31,6 +31,23 @@ export interface UnifiedStudentStats {
 }
 
 export type UserStats = UnifiedTutorStats | UnifiedStudentStats;
+
+type HomeStats = {
+    categories: Category[],
+    featuredTutors: TutorProfile[],
+    totalStudents: number,
+    totalTutors: number
+}
+
+export async function getHomeStatsAction(): Promise<HomeStats> {
+    const res = await fetch(`${API_URL}/home/stats`, {
+        cache: 'no-store'
+    });
+
+    const resData: ApiResponse<HomeStats> = await res.json();
+    console.log(resData)
+    return resData.data!;
+}
 
 export async function getUserStatsAction(): Promise<ApiResponse<{ stats: UserStats }>> {
     try {
