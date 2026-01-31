@@ -6,6 +6,57 @@ import { ApiResponse, Booking } from '../types/intex';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
+export async function createBookingAction(formData: {
+    tutorProfileId: string;
+    categoryId: string;
+    startTime: string;
+    endTime: string;
+}) {
+    try {
+        const cookieStore = await cookies();
+        const token = cookieStore.get('token')?.value;
+
+        if (!token) {
+            return { success: false, error: 'Please login to book a session' };
+        }
+
+        // Get current user to get studentId
+        const userRes = await fetch(`${API_URL}/user/profile`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const userData = await userRes.json();
+
+        if (!userRes.ok || !userData.success) {
+            return { success: false, error: 'Failed to identify user' };
+        }
+
+        const studentId = userData.data.user.id;
+
+        const res = await fetch(`${API_URL}/bookings`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                ...formData,
+                studentId
+            })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            return { success: false, error: data.message || 'Failed to book session' };
+        }
+
+        return { success: true, message: data.message };
+    } catch (error) {
+        console.error('createBookingAction error:', error);
+        return { success: false, error: 'Failed to connect to server' };
+    }
+}
+
 export async function getBookingsAction() {
     try {
         const cookieStore = await cookies();
