@@ -35,6 +35,12 @@ export default function UserModerationTable({ initialUsers }: { initialUsers: Us
 
     return (
         <div className="space-y-6">
+            <div>
+                <div className="flex items-center gap-3 mb-1">
+                    <h2 className="text-3xl font-black text-gray-900 tracking-tight">User Moderation</h2>
+                </div>
+                <p className="text-gray-500 font-medium">Moderate users and manage their access to the platform.</p>
+            </div>
             <div className="flex items-center justify-between gap-4">
                 <div className="relative flex-1 max-w-md">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />

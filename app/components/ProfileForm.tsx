@@ -38,7 +38,7 @@ export default function ProfileForm({ user, categories }: ProfileFormProps) {
     }, [tutorState]);
 
     return (
-        <div className="space-y-12 max-w-2xl">
+        <>
             {/* General Information */}
             <form action={generalAction} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm space-y-6">
                 <div>
@@ -148,6 +148,6 @@ export default function ProfileForm({ user, categories }: ProfileFormProps) {
                     </div>
                 </form>
             )}
-        </div>
+        </>
     );
 }

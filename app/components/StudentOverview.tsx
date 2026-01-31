@@ -19,8 +19,7 @@ export default function StudentOverview({ user, stats }: { user: User, stats: Un
         <div className="space-y-8 animate-in fade-in duration-500">
             <div>
                 <div className="flex items-center gap-3 mb-1">
-                    <span className="px-3 py-1 bg-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest rounded-lg">Student</span>
-                    <h2 className="text-2xl font-black text-gray-900 tracking-tight">Welcome back, {user.name}!</h2>
+                    <h2 className="text-3xl font-black text-gray-900 tracking-tight">Welcome back, {user.name}!</h2>
                 </div>
                 <p className="text-gray-500">Ready to continue your learning journey?</p>
             </div>

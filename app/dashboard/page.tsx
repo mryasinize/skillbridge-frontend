@@ -49,7 +49,7 @@ export default async function DashboardOverview() {
     };
 
     return (
-        <div className="max-w-6xl mx-auto">
+        <div>
             {await renderOverview()}
         </div>
     );

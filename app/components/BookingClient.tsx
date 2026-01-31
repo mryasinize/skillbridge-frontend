@@ -91,7 +91,6 @@ export default function BookingClient({
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
                     <div className="flex items-center gap-3 mb-1">
-                        <span className="px-3 py-1 bg-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest rounded-lg">Management</span>
                         <h2 className="text-3xl font-black text-gray-900 tracking-tight">Your Sessions</h2>
                     </div>
                     <p className="text-gray-500 font-medium">Manage your learning journey and teaching schedule.</p>

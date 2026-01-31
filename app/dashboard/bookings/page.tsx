@@ -13,7 +13,7 @@ export default async function BookingsPage() {
     const bookings = bookingsRes.success ? bookingsRes.data || [] : [];
 
     return (
-        <main className="max-w-[1400px] mx-auto px-6 py-10">
+        <main>
             <BookingClient
                 initialBookings={bookings}
                 currentUser={user}

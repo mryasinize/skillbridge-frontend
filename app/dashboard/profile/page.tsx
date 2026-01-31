@@ -18,10 +18,11 @@ export default async function ProfilePage() {
         <div className="space-y-10 animate-in fade-in duration-500">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                 <div>
-                    <h2 className="text-xl font-bold text-gray-900 tracking-tight">Profile Settings</h2>
-                    <p className="text-sm text-gray-500 italic">Manage your identity and security.</p>
+                    <div className="flex items-center gap-3 mb-1">
+                        <h2 className="text-3xl font-black text-gray-900 tracking-tight">Profile Settings</h2>
+                    </div>
+                    <p className="text-gray-500 font-medium">Manage your identity and security.</p>
                 </div>
-
                 <Link
                     href="/dashboard/profile/change-password"
                     className="inline-flex items-center gap-2 px-6 py-2.5 bg-gray-900 text-white rounded-xl font-bold text-xs hover:bg-gray-800 transition-all shadow-none"
@@ -31,11 +32,8 @@ export default async function ProfilePage() {
                 </Link>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                <div className="lg:col-span-2">
-                    <ProfileForm user={user} categories={categories} />
-                </div>
-
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                <ProfileForm user={user} categories={categories} />
                 <div className="space-y-6">
                     <div className="bg-linear-to-br from-indigo-600 to-blue-700 p-8 rounded-3xl text-white shadow-sm relative overflow-hidden">
                         <div className="relative z-10 space-y-4">

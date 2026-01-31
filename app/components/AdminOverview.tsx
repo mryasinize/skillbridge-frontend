@@ -8,8 +8,10 @@ export default function AdminOverview({ stats }: { stats: AdminStats }) {
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
             <div>
-                <h2 className="text-2xl font-black text-gray-900 tracking-tight mb-1">Platform Performance</h2>
-                <p className="text-gray-500">Real-time overview of the SkillBridge ecosystem.</p>
+                <div className="flex items-center gap-3 mb-1">
+                    <h2 className="text-3xl font-black text-gray-900 tracking-tight">Platform Performance</h2>
+                </div>
+                <p className="text-gray-500 font-medium">Real-time overview of the SkillBridge ecosystem.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

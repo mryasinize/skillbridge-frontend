@@ -28,8 +28,10 @@ export default async function AvailabilityPage() {
     return (
         <div className="space-y-10 animate-in fade-in duration-500">
             <div>
-                <h2 className="text-xl font-bold text-gray-900 tracking-tight">Availability Management</h2>
-                <p className="text-sm text-gray-500 italic">Configure your tutoring schedule.</p>
+                <div className="flex items-center gap-3 mb-1">
+                    <h2 className="text-3xl font-black text-gray-900 tracking-tight">Availability Slots</h2>
+                </div>
+                <p className="text-gray-500 font-medium">Configure your availability slots.</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -103,21 +105,6 @@ export default async function AvailabilityPage() {
                                 ))}
                             </div>
                         )}
-                    </div>
-
-                    <div className="bg-linear-to-br from-indigo-500 to-blue-600 p-8 rounded-3xl text-white shadow-xs relative overflow-hidden group">
-                        <div className="relative z-10">
-                            <h4 className="text-lg font-black mb-2 flex items-center gap-2">
-                                <AlertCircle size={20} />
-                                Scheduling Tip
-                            </h4>
-                            <p className="text-indigo-50 text-sm leading-relaxed max-w-md">
-                                To view or manage your confirmed student sessions, head over to the <span className="underline font-bold">Sessions</span> tab.
-                            </p>
-                        </div>
-                        <div className="absolute -right-8 -bottom-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
-                            <Calendar size={160} />
-                        </div>
                     </div>
                 </div>
             </div>

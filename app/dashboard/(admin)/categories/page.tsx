@@ -22,7 +22,7 @@ export default async function CategoriesPage() {
     }
 
     return (
-        <div className="max-w-6xl mx-auto">
+        <div>
             <CategoryManager initialCategories={res.data || []} />
         </div>
     );
