@@ -45,13 +45,6 @@ export default function ProfileForm({ user, categories }: ProfileFormProps) {
                     <h3 className="text-lg font-bold text-gray-900 mb-1">General Information</h3>
                     <p className="text-sm text-gray-500 italic">Manage your account details.</p>
                 </div>
-
-                {generalState?.error && (
-                    <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-xl">
-                        <p className="text-sm text-red-700 font-medium">{generalState.error}</p>
-                    </div>
-                )}
-
                 <div className="space-y-4">
                     <div>
                         <label className="block text-xs font-black uppercase tracking-widest text-gray-500 mb-2">Display Name</label>
@@ -90,13 +83,6 @@ export default function ProfileForm({ user, categories }: ProfileFormProps) {
                         <h3 className="text-lg font-bold text-gray-900 mb-1">Tutor Profile</h3>
                         <p className="text-sm text-gray-500 italic">Configure your public tutor appearance.</p>
                     </div>
-
-                    {tutorState?.error && (
-                        <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-xl">
-                            <p className="text-sm text-red-700 font-medium">{tutorState.error}</p>
-                        </div>
-                    )}
-
                     <div className="space-y-6">
                         <div>
                             <label className="block text-xs font-black uppercase tracking-widest text-gray-500 mb-2">Professional Bio</label>
