@@ -45,7 +45,6 @@ export async function getHomeStatsAction(): Promise<HomeStats> {
     });
 
     const resData: ApiResponse<HomeStats> = await res.json();
-    console.log(resData)
     return resData.data!;
 }
 

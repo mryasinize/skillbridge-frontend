@@ -17,7 +17,6 @@ export default async function Home() {
     getHomeStatsAction()
   ]);
   const { categories, featuredTutors, totalStudents, totalTutors } = stats;
-  console.log(categories)
 
   return (
     <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
