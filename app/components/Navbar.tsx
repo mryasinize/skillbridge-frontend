@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { User } from '../types/intex';
+import { GraduationCap } from 'lucide-react';
 
 export default async function Navbar({ user }: { user: User | null }) {
     return (
@@ -7,14 +8,14 @@ export default async function Navbar({ user }: { user: User | null }) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-20">
                     <div className="flex items-center gap-12">
-                        <Link href="/" className="flex items-center gap-2 group">
-                            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black group-hover:rotate-6 transition-transform">
-                                S
+                        <Link href="/" className="flex items-center gap-2 px-2">
+                            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
+                                <GraduationCap className="text-white" size={24} />
                             </div>
-                            <span className="text-xl font-black text-gray-900 tracking-tighter">SkillBridge</span>
+                            <span className="text-xl font-black tracking-tight text-gray-900">SkillBridge</span>
                         </Link>
 
-                        <div className="hidden md:flex items-center gap-8">
+                        <div className="hidden md:flex items-center">
                             <Link href="/tutors" className="text-gray-400 hover:text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] transition-colors">
                                 Browse Experts
                             </Link>

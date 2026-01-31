@@ -163,8 +163,8 @@ export default function BookingClient({
                                                     ID: {booking.id.slice(0, 8)}
                                                 </span>
                                             </div>
-                                            <h3 className="text-xl font-black text-gray-900 group-hover:text-blue-600 transition-colors">
-                                                {booking.category?.name || "Tutoring Session"}
+                                            <h3 className={`text-xl font-black transition-colors ${booking.category ? 'text-gray-900 group-hover:text-blue-600' : 'text-red-500 italic'}`}>
+                                                {booking.category?.name || "(Category removed)"}
                                             </h3>
                                         </div>
                                         <div className="p-3 bg-gray-50 rounded-2xl text-gray-400 group-hover:text-blue-500 group-hover:bg-blue-50 transition-all">

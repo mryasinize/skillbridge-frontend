@@ -31,8 +31,8 @@ export default function TutorCard({ tutor }: TutorCardProps) {
             </div>
 
             <div className="relative z-10 mb-6">
-                <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider mb-2 inline-block">
-                    {tutor.category.name}
+                <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider mb-2 inline-block ${tutor.category ? 'bg-blue-50 text-blue-600' : 'bg-red-50 italic text-red-600'}`}>
+                    {tutor.category?.name || "(Category removed)"}
                 </span>
                 <h3 className="text-2xl font-black text-gray-900 group-hover:text-blue-600 transition-colors tracking-tight">
                     {tutor.user.name}
