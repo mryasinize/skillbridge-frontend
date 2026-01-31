@@ -1,10 +1,12 @@
+import Logo from './Logo';
+
 export default function Footer() {
     return (
         <footer className="bg-white border-t border-gray-100 py-12 mt-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="col-span-1 md:col-span-2">
-                        <span className="text-2xl font-bold text-blue-600">SkillBridge</span>
+                        <Logo />
                         <p className="mt-4 text-gray-500 max-w-xs">
                             Connecting expert tutors with eager learners worldwide. Empowering the next generation of professionals.
                         </p>

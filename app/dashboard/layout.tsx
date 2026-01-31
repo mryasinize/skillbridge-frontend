@@ -1,7 +1,5 @@
 import { getUserAction } from '@/app/actions/auth';
-import {
-    GraduationCap
-} from 'lucide-react';
+import Logo from '@/app/components/Logo';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
@@ -25,12 +23,9 @@ export default async function DashboardLayout({ children }: { children: React.Re
             <div className="h-screen flex bg-gray-50 overflow-hidden">
                 <SidebarContainer>
                     <div className="h-full flex flex-col p-6">
-                        <Link href="/" className="flex items-center gap-2 mb-10 px-2">
-                            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-                                <GraduationCap className="text-white" size={24} />
-                            </div>
-                            <span className="text-xl font-black tracking-tight text-gray-900">SkillBridge</span>
-                        </Link>
+                        <div className="mb-10">
+                            <Logo />
+                        </div>
 
                         <nav className="flex-1 space-y-1">
                             <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-4 mb-4">
