@@ -17,7 +17,7 @@ export default async function Navbar({ user }: { user?: User | null }) {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-3 sm:gap-6">
                         {user ? (
                             <Link href="/dashboard" className="flex items-center gap-3 group">
                                 <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 font-black group-hover:bg-blue-100 transition-colors">
@@ -30,12 +30,16 @@ export default async function Navbar({ user }: { user?: User | null }) {
                                 </div>
                             </Link>
                         ) : (
-                            <div className="flex items-center gap-4">
-                                <Link href="/login" className="text-gray-400 hover:text-gray-900 text-xs font-black uppercase tracking-[0.2em] px-4">
+                            <div className="flex items-center gap-2 sm:gap-4">
+                                <Link href="/login" className="hidden sm:block text-gray-400 hover:text-gray-900 text-xs font-black uppercase tracking-[0.2em] px-4">
                                     Sign In
                                 </Link>
-                                <Link href="/register" className="bg-blue-600 text-white px-8 py-3.5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-blue-700 transition-all active:scale-95">
-                                    Join Platform
+                                <Link href="/login" className="sm:hidden text-gray-600 text-sm font-bold px-3 py-2">
+                                    Login
+                                </Link>
+                                <Link href="/register" className="bg-blue-600 text-white px-4 sm:px-8 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl text-xs font-black uppercase tracking-wider sm:tracking-[0.2em] hover:bg-blue-700 transition-all active:scale-95">
+                                    <span className="sm:hidden">Join</span>
+                                    <span className="hidden sm:inline">Join Platform</span>
                                 </Link>
                             </div>
                         )}
