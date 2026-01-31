@@ -1,5 +1,6 @@
 import { getTutorById } from '@/app/actions/tutor';
 import BookingSidebar from '@/app/components/BookingSidebar';
+import MobileBookingButton from '@/app/components/MobileBookingButton';
 import {
     ArrowLeft,
     BookOpen,
@@ -43,24 +44,27 @@ export default async function TutorProfilePage({ params }: { params: Promise<{ i
 
     return (
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            {/* Back Link */}
             <Link href="/tutors" className="inline-flex items-center gap-2 text-gray-400 hover:text-blue-600 transition-colors font-bold text-xs uppercase tracking-widest mb-8">
                 <ArrowLeft size={14} /> Back to Tutors
             </Link>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Main Content */}
+                <div className="hidden lg:block lg:col-span-1 lg:order-last">
+                    <div className="sticky top-24">
+                        <BookingSidebar tutor={tutor} />
+                    </div>
+                </div>
+
                 <div className="lg:col-span-2 space-y-6">
-                    {/* Profile Header */}
                     <div className="bg-white rounded-[2.5rem] p-10 border border-gray-100 shadow-sm relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50/50 rounded-full -mr-24 -mt-24"></div>
 
                         <div className="flex flex-col md:flex-row gap-8 items-start md:items-center relative z-10">
-                            <div className="w-28 h-28 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[1.5rem] flex items-center justify-center text-4xl font-black text-white flex-shrink-0">
+                            <div className="w-28 h-28 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl flex items-center justify-center text-4xl font-black text-white shrink-0">
                                 {tutor.user.name.charAt(0)}
                             </div>
 
-                            <div className="flex-grow">
+                            <div className="grow">
                                 <div className="flex flex-wrap items-center gap-2 mb-3">
                                     <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider ${tutor.category ? 'bg-blue-50 text-blue-600' : 'bg-red-50 text-red-600 italic'}`}>
                                         {tutor.category?.name || "(Category removed)"}
@@ -89,7 +93,6 @@ export default async function TutorProfilePage({ params }: { params: Promise<{ i
                         </div>
                     </div>
 
-                    {/* About Section */}
                     <div className="bg-white rounded-[2.5rem] p-10 border border-gray-100 shadow-sm">
                         <div className="flex items-center gap-3 mb-6">
                             <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl">
@@ -102,7 +105,6 @@ export default async function TutorProfilePage({ params }: { params: Promise<{ i
                         </p>
                     </div>
 
-                    {/* Reviews Section */}
                     <div className="bg-white rounded-[2.5rem] p-10 border border-gray-100 shadow-sm">
                         <div className="flex items-center justify-between mb-8">
                             <div className="flex items-center gap-3">
@@ -152,12 +154,8 @@ export default async function TutorProfilePage({ params }: { params: Promise<{ i
                         )}
                     </div>
                 </div>
-
-                {/* Sidebar */}
-                <div>
-                    <BookingSidebar tutor={tutor} />
-                </div>
             </div>
+            <MobileBookingButton tutor={tutor} />
         </main>
     );
 }

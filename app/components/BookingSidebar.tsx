@@ -47,7 +47,6 @@ export default function BookingSidebar({ tutor }: { tutor: TutorProfile }) {
             toast.success('Session booked!');
             setSelectedSlot(null);
             router.refresh();
-            // router.push('/dashboard/bookings');
         } else {
             toast.error(result.error || 'Booking failed');
         }
@@ -87,10 +86,11 @@ export default function BookingSidebar({ tutor }: { tutor: TutorProfile }) {
             <hr className="border-gray-100 mb-6" />
 
             {/* Slot Selection */}
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
                 <Calendar size={16} className="text-blue-600" />
                 <h4 className="font-bold text-sm text-gray-900">Available Slots</h4>
             </div>
+            <p className="text-xs text-gray-400 mb-4">Select a time slot below to book your session</p>
 
             <div className="space-y-2 max-h-72 overflow-y-auto">
                 {availableSlots.length > 0 ? (
