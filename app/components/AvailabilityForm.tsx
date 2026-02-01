@@ -9,6 +9,26 @@ import { SubmitButton } from './SubmitButton';
 export default function AvailabilityForm() {
     const [state, action] = useActionState(addAvailabilityAction, null);
 
+    const handleAction = (formData: FormData) => {
+        const startTime = formData.get('startTime') as string;
+        const endTime = formData.get('endTime') as string;
+
+        if (!startTime || !endTime) {
+            toast.error("Start and end times are required");
+            return;
+        }
+
+        if (new Date(startTime) >= new Date(endTime)) {
+            toast.error("Start time must be before end time");
+            return;
+        }
+
+        formData.set('startTime', new Date(startTime).toISOString());
+        formData.set('endTime', new Date(endTime).toISOString());
+
+        action(formData);
+    }
+
     useEffect(() => {
         if (state?.success) {
             toast.success(state.message);
@@ -18,7 +38,7 @@ export default function AvailabilityForm() {
     }, [state]);
 
     return (
-        <form action={action} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm space-y-6">
+        <form action={handleAction} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm space-y-6">
             <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
                     <Calendar size={24} />

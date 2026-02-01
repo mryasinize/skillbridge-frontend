@@ -2,18 +2,9 @@ import { UnifiedTutorStats } from '@/app/actions/user';
 import { ChevronRight, Clock, DollarSign, MessageSquare, Users } from 'lucide-react';
 import Link from 'next/link';
 import StatCard from './StatCard';
+import TimeDisplay from './TimeDisplay';
 
 export default function TutorOverview({ stats }: { stats: UnifiedTutorStats }) {
-    const formatDate = (dateString: string) => {
-        const date = new Date(dateString);
-        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    };
-
-    const formatDay = (dateString: string) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString([], { month: 'short', day: 'numeric' });
-    };
-
     const getInitials = (name: string) => {
         return name
             .split(' ')
@@ -83,8 +74,26 @@ export default function TutorOverview({ stats }: { stats: UnifiedTutorStats }) {
                                         </div>
                                     </div>
                                     <div className="text-right">
-                                        <p className="text-sm font-black text-gray-900">{formatDate(session.startTime)}</p>
-                                        <p className="text-[10px] text-gray-400 font-bold">{formatDay(session.startTime)}</p>
+                                        <p className="text-sm font-black text-gray-900">
+                                            <TimeDisplay
+                                                date={session.startTime}
+                                                options={{
+                                                    hour: 'numeric',
+                                                    minute: '2-digit',
+                                                    hour12: true
+                                                }}
+                                            />
+                                        </p>
+                                        <p className="text-[10px] text-gray-400 font-bold">
+                                            <TimeDisplay
+                                                date={session.startTime}
+                                                options={{
+                                                    weekday: 'short',
+                                                    month: 'short',
+                                                    day: 'numeric'
+                                                }}
+                                            />
+                                        </p>
                                     </div>
                                 </div>
                             ))

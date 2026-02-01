@@ -3,18 +3,9 @@ import { BookOpen, Calendar, ChevronRight, Clock, GraduationCap, Video } from 'l
 import Link from 'next/link';
 import { UnifiedStudentStats } from '@/app/actions/user';
 import StatCard from './StatCard';
+import TimeDisplay from './TimeDisplay';
 
 export default function StudentOverview({ user, stats }: { user: User, stats: UnifiedStudentStats }) {
-    const formatDate = (dateString: string) => {
-        const date = new Date(dateString);
-        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    };
-
-    const formatDay = (dateString: string) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString([], { month: 'short', day: 'numeric' });
-    };
-
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
             <div>
@@ -69,11 +60,29 @@ export default function StudentOverview({ user, stats }: { user: User, stats: Un
                             <div className="flex items-center gap-6 text-sm">
                                 <div className="flex items-center gap-2 text-gray-600">
                                     <Calendar size={16} />
-                                    <span className="font-medium">{formatDay(stats.nextSession.startTime)}</span>
+                                    <span className="font-medium">
+                                        <TimeDisplay
+                                            date={stats.nextSession.startTime}
+                                            options={{
+                                                weekday: 'short',
+                                                month: 'short',
+                                                day: 'numeric'
+                                            }}
+                                        />
+                                    </span>
                                 </div>
                                 <div className="flex items-center gap-2 text-gray-600">
                                     <Clock size={16} />
-                                    <span className="font-medium">{formatDate(stats.nextSession.startTime)}</span>
+                                    <span className="font-medium">
+                                        <TimeDisplay
+                                            date={stats.nextSession.startTime}
+                                            options={{
+                                                hour: 'numeric',
+                                                minute: '2-digit',
+                                                hour12: true
+                                            }}
+                                        />
+                                    </span>
                                 </div>
                             </div>
                         </div>

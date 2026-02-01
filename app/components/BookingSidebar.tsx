@@ -6,28 +6,12 @@ import { Calendar, ChevronRight, Clock, DollarSign, Loader2 } from 'lucide-react
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import TimeDisplay from './TimeDisplay';
 
 export default function BookingSidebar({ tutor }: { tutor: TutorProfile }) {
     const router = useRouter();
     const [selectedSlot, setSelectedSlot] = useState<AvailabilitySlot | null>(null);
     const [bookingLoading, setBookingLoading] = useState(false);
-
-    const formatDate = (dateStr: string) => {
-        return new Intl.DateTimeFormat('en-US', {
-            weekday: 'short',
-            month: 'short',
-            day: 'numeric'
-        }).format(new Date(dateStr));
-    };
-
-    const formatTime = (startStr: string, endStr: string) => {
-        const fmt = new Intl.DateTimeFormat('en-US', {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true
-        });
-        return `${fmt.format(new Date(startStr))} - ${fmt.format(new Date(endStr))}`;
-    };
 
     const handleBooking = async () => {
         if (!selectedSlot) {
@@ -105,11 +89,36 @@ export default function BookingSidebar({ tutor }: { tutor: TutorProfile }) {
                         >
                             <div className={`text-xs font-bold uppercase tracking-wide mb-1 ${selectedSlot?.id === slot.id ? 'text-blue-100' : 'text-gray-500'
                                 }`}>
-                                {formatDate(slot.startTime)}
+                                <TimeDisplay
+                                    date={slot.startTime}
+                                    options={{
+                                        weekday: 'short',
+                                        month: 'short',
+                                        day: 'numeric'
+                                    }}
+                                />
                             </div>
                             <div className={`font-bold text-sm ${selectedSlot?.id === slot.id ? 'text-white' : 'text-gray-900'
                                 }`}>
-                                {formatTime(slot.startTime, slot.endTime)}
+                                <TimeDisplay
+                                    date={slot.startTime}
+                                    options={{
+                                        hour: 'numeric',
+                                        minute: '2-digit',
+                                        hour12: true
+                                    }}
+                                />
+                                &nbsp;
+                                -
+                                &nbsp;
+                                <TimeDisplay
+                                    date={slot.endTime}
+                                    options={{
+                                        hour: 'numeric',
+                                        minute: '2-digit',
+                                        hour12: true
+                                    }}
+                                />
                             </div>
                         </button>
                     ))

@@ -2,6 +2,7 @@ import { getUserAction } from '@/app/actions/auth';
 import { getTutorById } from '@/app/actions/tutor';
 import AvailabilityForm from '@/app/components/AvailabilityForm';
 import DeleteAvailabilityButton from '@/app/components/DeleteAvailabilityButton';
+import TimeDisplay from '@/app/components/TimeDisplay';
 import { Calendar, Clock } from 'lucide-react';
 import { redirect } from 'next/navigation';
 
@@ -17,10 +18,6 @@ export default async function AvailabilityPage() {
     if (!profile) {
         return <div>Error loading profile.</div>;
     }
-
-    const formatDate = (date: string, options: Intl.DateTimeFormatOptions) => {
-        return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
-    };
 
     const slots = profile.availabilitySlots
         .sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime());
@@ -69,15 +66,15 @@ export default async function AvailabilityPage() {
                                         <div className="flex items-center gap-5">
                                             <div className="hidden sm:flex flex-col items-center justify-center w-14 h-14 bg-white border border-gray-100 rounded-xl shadow-xs">
                                                 <span className="text-[10px] font-black uppercase text-gray-400 leading-none">
-                                                    {formatDate(slot.startTime, { month: 'short' })}
+                                                    <TimeDisplay date={slot.startTime} options={{ month: 'short' }} />
                                                 </span>
                                                 <span className="text-lg font-black text-gray-900 leading-tight">
-                                                    {formatDate(slot.startTime, { day: '2-digit' })}
+                                                    <TimeDisplay date={slot.startTime} options={{ day: '2-digit' }} />
                                                 </span>
                                             </div>
                                             <div>
                                                 <p className="font-bold text-gray-900">
-                                                    {formatDate(slot.startTime, { weekday: 'long' })}, {formatDate(slot.startTime, { hour: 'numeric', minute: '2-digit' })} - {formatDate(slot.endTime, { hour: 'numeric', minute: '2-digit' })}
+                                                    <TimeDisplay date={slot.startTime} options={{ weekday: 'long' }} />, <TimeDisplay date={slot.startTime} options={{ hour: 'numeric', minute: '2-digit' }} /> - <TimeDisplay date={slot.endTime} options={{ hour: 'numeric', minute: '2-digit' }} />
                                                 </p>
                                                 <div className="flex items-center gap-2 mt-1">
                                                     <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-md border ${slot.isBooked ? 'bg-blue-50 text-blue-600 border-blue-100' : 'bg-green-50 text-green-600 border-green-100'}`}>

@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { Booking, User } from '../types/intex';
 import ReviewForm from './ReviewForm';
+import TimeDisplay from './TimeDisplay';
 
 export default function BookingClient({
     initialBookings,
@@ -65,16 +66,6 @@ export default function BookingClient({
         } else {
             toast.error(result.error);
         }
-    };
-
-    const formatDate = (date: string) => {
-        return new Intl.DateTimeFormat('en-US', {
-            weekday: 'short',
-            month: 'short',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: '2-digit'
-        }).format(new Date(date));
     };
 
     const getStatusStyles = (status: string) => {
@@ -178,7 +169,19 @@ export default function BookingClient({
                                             </div>
                                             <div>
                                                 <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Scheduled For</p>
-                                                <p className="text-sm font-bold text-gray-900">{formatDate(booking.startTime)}</p>
+                                                <p className="text-sm font-bold text-gray-900">
+                                                    <TimeDisplay
+                                                        date={booking.startTime}
+                                                        options={{
+                                                            weekday: 'short',
+                                                            month: 'short',
+                                                            day: 'numeric',
+                                                            hour: 'numeric',
+                                                            minute: '2-digit',
+                                                            hour12: true
+                                                        }}
+                                                    />
+                                                </p>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-transparent hover:border-gray-200 transition-all">

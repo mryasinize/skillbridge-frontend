@@ -54,14 +54,6 @@ export async function addAvailabilityAction(prevState: any, formData: FormData) 
     const startTime = formData.get('startTime') as string;
     const endTime = formData.get('endTime') as string;
 
-    if (!startTime || !endTime) {
-        return { success: false, error: 'Start and end times are required' };
-    }
-
-    if (new Date(startTime) >= new Date(endTime)) {
-        return { success: false, error: 'Start time must be before end time' };
-    }
-
     try {
         const cookieStore = await cookies();
         const token = cookieStore.get('token')?.value;
