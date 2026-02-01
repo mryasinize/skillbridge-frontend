@@ -21,13 +21,13 @@ export interface UnifiedStudentStats {
     activeBookings: number;
     completedHours: number;
     learningPoints: number;
-    nextSession: {
+    nextSessions: {
         id: string;
         title: string;
         tutorName: string;
         startTime: string;
         endTime: string;
-    } | null;
+    }[] | null;
 }
 
 export type UserStats = UnifiedTutorStats | UnifiedStudentStats;

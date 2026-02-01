@@ -42,7 +42,7 @@ export default async function DashboardOverview() {
                     activeBookings: 0,
                     completedHours: 0,
                     learningPoints: 0,
-                    nextSession: null
+                    nextSessions: null
                 };
             return <StudentOverview user={user} stats={stats} />;
         }

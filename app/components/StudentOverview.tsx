@@ -46,46 +46,48 @@ export default function StudentOverview({ user, stats }: { user: User, stats: Un
                         </Link>
                     </div>
 
-                    {stats.nextSession ? (
-                        <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 relative z-10 transition-all hover:bg-blue-100/50">
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600">
-                                    <Video size={24} />
+                    {stats.nextSessions ? (
+                        stats.nextSessions.map((session, index) => (
+                            <div key={session.id} className="mb-4 bg-blue-50 p-6 rounded-2xl border border-blue-100 relative z-10 transition-all hover:bg-blue-100/50">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600">
+                                        <Video size={24} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-gray-900">{session.title}</h4>
+                                        <p className="text-xs text-gray-500">with {session.tutorName}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 className="font-bold text-gray-900">{stats.nextSession.title}</h4>
-                                    <p className="text-xs text-gray-500">with {stats.nextSession.tutorName}</p>
+                                <div className="flex items-center gap-6 text-sm">
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <Calendar size={16} />
+                                        <span className="font-medium">
+                                            <TimeDisplay
+                                                date={session.startTime}
+                                                options={{
+                                                    weekday: 'short',
+                                                    month: 'short',
+                                                    day: 'numeric'
+                                                }}
+                                            />
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <Clock size={16} />
+                                        <span className="font-medium">
+                                            <TimeDisplay
+                                                date={session.startTime}
+                                                options={{
+                                                    hour: 'numeric',
+                                                    minute: '2-digit',
+                                                    hour12: true
+                                                }}
+                                            />
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-6 text-sm">
-                                <div className="flex items-center gap-2 text-gray-600">
-                                    <Calendar size={16} />
-                                    <span className="font-medium">
-                                        <TimeDisplay
-                                            date={stats.nextSession.startTime}
-                                            options={{
-                                                weekday: 'short',
-                                                month: 'short',
-                                                day: 'numeric'
-                                            }}
-                                        />
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-2 text-gray-600">
-                                    <Clock size={16} />
-                                    <span className="font-medium">
-                                        <TimeDisplay
-                                            date={stats.nextSession.startTime}
-                                            options={{
-                                                hour: 'numeric',
-                                                minute: '2-digit',
-                                                hour12: true
-                                            }}
-                                        />
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        ))
                     ) : (
                         <div className="bg-gray-50 p-10 rounded-2xl border border-dashed border-gray-200 text-center relative z-10">
                             <p className="text-gray-400 font-medium italic">No upcoming sessions scheduled.</p>
@@ -98,8 +100,6 @@ export default function StudentOverview({ user, stats }: { user: User, stats: Un
                 </div>
 
                 <div className="bg-gray-900 p-8 rounded-2xl text-white shadow-xl relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-3xl rounded-full transition-all group-hover:bg-blue-500/20" />
-
                     <h3 className="text-lg font-bold mb-6 relative z-10">Discovery</h3>
                     <div className="space-y-4 relative z-10">
                         <Link

@@ -18,8 +18,13 @@ export default function AvailabilityForm() {
             return;
         }
 
+        if (new Date(startTime) < new Date()) {
+            toast.error("Start time must be in the future");
+            return;
+        }
+
         if (new Date(startTime) >= new Date(endTime)) {
-            toast.error("Start time must be before end time");
+            toast.error("End time must be after start time");
             return;
         }
 
