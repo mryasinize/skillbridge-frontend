@@ -127,7 +127,7 @@ export default function BookingClient({
                     </div>
                 ) : (
                     currentList.map((booking) => (
-                        <div key={booking.id} className="group relative bg-white border border-gray-100 rounded-3xl p-6 md:p-8 hover:border-blue-200 hover:shadow-xl transition-all duration-500">
+                        <div key={booking.id} className="group relative bg-white border border-gray-100 rounded-3xl p-6 md:p-8">
 
                             {reviewBookingId === booking.id && (
                                 <div className="absolute inset-0 z-20 bg-white/95 backdrop-blur-sm p-4 md:p-8 flex items-center justify-center">
@@ -176,6 +176,15 @@ export default function BookingClient({
                                                             weekday: 'short',
                                                             month: 'short',
                                                             day: 'numeric',
+                                                            hour: 'numeric',
+                                                            minute: '2-digit',
+                                                            hour12: true
+                                                        }}
+                                                    />
+                                                    <span> - </span>
+                                                    <TimeDisplay
+                                                        date={booking.endTime}
+                                                        options={{
                                                             hour: 'numeric',
                                                             minute: '2-digit',
                                                             hour12: true
@@ -303,8 +312,6 @@ export default function BookingClient({
                                     </div>
                                 )}
                             </div>
-
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-1000 -z-10" />
                         </div>
                     ))
                 )}

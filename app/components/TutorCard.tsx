@@ -18,8 +18,6 @@ export default function TutorCard({ tutor }: TutorCardProps) {
             href={`/tutors/${tutor.id}`}
             className="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-500 group relative overflow-hidden flex flex-col h-full"
         >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/30 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
-
             <div className="flex items-start justify-between mb-6 relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl flex items-center justify-center text-2xl font-black text-white">
                     {tutor.user.name.charAt(0)}
