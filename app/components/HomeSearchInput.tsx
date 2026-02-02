@@ -1,11 +1,12 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 
 export default function HomeSearchInput() {
     const [searchQuery, setSearchQuery] = useState('');
+    const [inPending, startTransition] = useTransition();
     const router = useRouter();
 
     const handleSearch = (e: React.FormEvent) => {
@@ -13,7 +14,9 @@ export default function HomeSearchInput() {
         if (searchQuery.trim()) {
             const params = new URLSearchParams();
             params.set("searchTerm", searchQuery.trim());
-            router.push(`/tutors?${params.toString()}`);
+            startTransition(() => {
+                router.push(`/tutors?${params.toString()}`);
+            })
         }
     };
     return (
@@ -30,8 +33,8 @@ export default function HomeSearchInput() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full outline-none bg-transparent border-none focus:ring-0 px-4 py-4 text-gray-900 font-bold placeholder:text-gray-300 placeholder:font-medium"
                 />
-                <button type="submit" className="bg-blue-600 text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition-all active:scale-95 shadow-blue-200">
-                    Search
+                <button type="submit" disabled={inPending} className="bg-blue-600 text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition-all active:scale-95 shadow-blue-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    {inPending ? "Searching..." : "Search"}
                 </button>
             </div>
         </form>
