@@ -1,14 +1,13 @@
 import { getUserAction } from '@/app/actions/auth';
 import Logo from '@/app/components/Logo';
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import React from 'react';
-import NavSectionTitle from '@/app/components/NavSectionTitle';
-import SidebarContainer from '@/app/components/SidebarContainer';
 import LogoutButton from '@/app/components/LogoutButton';
 import NavItemLink from '@/app/components/NavItemLink';
+import NavSectionTitle from '@/app/components/NavSectionTitle';
+import SidebarContainer from '@/app/components/SidebarContainer';
 import { navigation, sharedNavigation } from '@/app/constants/navLinks';
 import { DashboardProvider } from '@/app/context/DashboardContext';
+import { redirect } from 'next/navigation';
+import React from 'react';
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
     const user = await getUserAction();
